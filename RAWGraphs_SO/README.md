@@ -27,7 +27,5 @@ Select ```Zipped_image``` to use the image downloaded in this package or select 
 
 Enjoy!
 
-
-
-
+Co-developed with @bryant-treacle
 
