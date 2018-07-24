@@ -31,13 +31,23 @@ rawgraph_docker_pull()
     docker pull pr1malbyt3s/rawgraphs_so
 }
 
-rawgraph_docker_start()
+rawgraph_docker_service_install()
 {
-# Starting Rawgraphs docker container and mounting volume to give apache2 access to the index.html file
-    echo "Starting rawgraphs_so Docker container."
-    docker run --name=rawgraphs --volume /var/www/so/rawgraphs/:/rawgraphs/: -d 03a4c76d6e00
-    docker exec -it rawgraphs bash -c "cd /raw && cp -R * /rawgraphs/"
+# Installing rawgraphs docker container as a service
+    echo "Installing rawgraphs_so Docker image as so-rawgraphs service."
+    cp docker.so-rawgraphs.service /etc/systemd/system/so-rawgraphs.service
+    systemctl enable so-rawgraphs
+    systemctl stop so-rawgraphs
+    systemctl start so-rawgraphs
 }
+
+#rawgraph_docker_start()
+#{
+# Starting Rawgraphs docker container and mounting volume to give apache2 access to the index.html file
+#    echo "Starting rawgraphs_so Docker container."
+#    docker run --name=rawgraphs --volume /var/www/so/rawgraphs/:/rawgraphs/: -d f90ccbcfd809
+#    docker exec -it rawgraphs bash -c "cd /raw && cp -R * /rawgraphs/"
+#}
 
 ###################################################################################
 # Adding necessary code to the securityonion.conf in /etc/apache2/sites-available/#
@@ -82,11 +92,13 @@ EOM
 main_prompt
     if [ $rawgraph_install_option = "Zipped_image" ] ; then
         rawgraph_install_prompt
-        rawgraph_docker_start
+        #rawgraph_docker_start
+        rawgraph_docker_service_install
         rawgraph_apache2_conf
     elif [ $rawgraph_install_option = "Latest_image" ] ; then
         rawgraph_docker_pull
-        rawgraph_docker_start
+        #rawgraph_docker_start
+        rawgraph_docker_service_install
         rawgraph_apache2_conf
     else
         exit
