@@ -10,6 +10,7 @@ ExecStartPre=-/usr/bin/docker stop rawgraphs > /dev/null 2>&1
 ExecStartPre=-/usr/bin/docker rm rawgraphs > /dev/null 2>&1
 ExecStartPre=-/usr/bin/docker run --name=rawgraphs --volume /var/www/so/rawgraphs/:/rawgraphs/: -d 03a4c76d6e00
 ExecStartPre=-/usr/bin/docker exec -it rawgraphs bash -c "cd /raw && cp -R * /rawgraphs/"
+#SET USER AND GROUP!!
 
 [Install]
 WantedBy=multi-user.target
