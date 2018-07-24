@@ -30,11 +30,11 @@ RUN groupadd --gid 937 rawgraphs && \
 #Change permissions on all files for rawgraphs user.
 RUN chown --recursive rawgraphs:rawgraphs /usr/share/rawgraphs/*
 
-#Switch user and start process.
-USER rawgraphs
-
 #Enjoy some humor in our struggles.
 RUN echo "#!/bin/bash" > /usr/share/rawgraphs/stupid.sh
 RUN echo 'while true; do echo "docker should make this easier... also data analytics is a waste of time" > /usr/share/rawgraphs/stupid.txt; sleep 10; done' >> /usr/share/rawgraphs/stupid.sh
 RUN chmod 755 /usr/share/rawgraphs/stupid.sh
+
+#Switch user and start process.
+USER rawgraphs
 CMD ./usr/share/rawgraphs/stupid.sh
