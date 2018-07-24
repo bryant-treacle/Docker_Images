@@ -1,7 +1,7 @@
 #!/bin/bash
 #Purpose: This script will install the data visualization program rawgraphs as a docker container on ubuntu 16.
 #Creation Date: 14 July
-#Last Modified: 14 July
+#Last Modified: 24 July
 
 
 main_prompt()
@@ -29,6 +29,11 @@ rawgraph_docker_pull()
  # Downloading rawgraphs docker container
     echo "Downloading rawgraphs_so Docker image."
     docker pull pr1malbyt3s/rawgraphs_so
+}
+
+rawgraph_user_create()
+{
+    # Create user that will run rawgraphs service that is not root
 }
 
 rawgraph_docker_service_install()
