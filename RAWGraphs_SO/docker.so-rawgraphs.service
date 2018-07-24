@@ -1,0 +1,14 @@
+[Unit]
+Description=SO-Rawgraphs Service
+After=docker.service apache2.service.d
+Requires=docker.service apache2.service.d
+
+[Service]
+TimeoutStartSec=0
+Restart=always
+ExecStartPre=-/usr/bin/docker exec %n stop
+ExecStartPre=-/usr/bin/docker rm %n
+
+
+[Install]
+WantedBy=multi-user.target
