@@ -34,7 +34,7 @@ RUN chown --recursive rawgraphs:rawgraphs /usr/share/rawgraphs/*
 USER rawgraphs
 
 #Enjoy some humor in our struggles.
-RUN echo "#!/bin/bash" > stupid.sh
-RUN echo 'while true; do echo "docker should make this easier... also data analytics is a waste of time" > stupid.txt; sleep 10; done' >> stupid.sh
-RUN chmod 755 stupid.sh
-CMD ./stupid.sh
+RUN echo "#!/bin/bash" > /usr/share/rawgraphs/stupid.sh
+RUN echo 'while true; do echo "docker should make this easier... also data analytics is a waste of time" > /usr/share/rawgraphs/stupid.txt; sleep 10; done' >> /usr/share/rawgraphs/stupid.sh
+RUN chmod 755 /usr/share/rawgraphs/stupid.sh
+CMD ./usr/share/rawgraphs/stupid.sh
